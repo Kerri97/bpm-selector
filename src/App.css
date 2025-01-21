@@ -1,0 +1,78 @@
+@font-face {
+  font-family: "Baste-Bold";
+  src:
+    url("/public/assets/fonts/BasteBTRIAL-Black.otf") format("opentype"),
+
+}
+
+@font-face {
+  font-family: "MintGrotesk-Bold";
+  src:
+    url("/public/assets/fonts/MintGroteskTrial-Bold.otf") format("opentype"),
+
+}
+
+@font-face {
+  font-family: "MintGrotesk-Italic";
+  src:
+    url("/public/assets/fonts/MintGroteskTrial-BoldItalic.otf") format("opentype"),
+
+}
+
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 42px;
+  overflow: hidden; 
+  margin: 0;
+  padding: 0;
+}
+
+.leva {
+  z-index: 9999; /* Make sure the controls are on top */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999; /* Ensure it stays on top of other elements */
+  font-family: 'Baste-Bold';
+  font-size: 6rem;
+  line-height: 6rem;
+  color: white;
+  margin: 0;
+  padding: 24px;
+}
+
+.fixed-para {
+  position: fixed;
+  top: 200px;
+  left: 10px;
+  z-index: 9999; /* Ensure it stays on top of other elements */
+  font-family: 'MintGrotesk-Bold';
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: white;
+  margin: 0;
+  padding: 24px;
+}
+
+
+.fixed-bold {
+  font-family:'MintGrotesk-Bold';
+}
+
+.fixed-italic {
+  font-family:'MintGrotesk-Italic';
+}
+
+canvas {
+  display: block; 
+  pointer-events: none; /* Allow clicks to pass through the canvas */
+}
