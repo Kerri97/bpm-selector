@@ -1,8 +1,4 @@
-# React + Vite
+BPM Song Selector
+Part One: 3D Interactive Audio Visualiser 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3D Interactive Audio Visualizer Web-App built with React.js and React Three Fiber. It features a dynamic audio waveform visualizer and an animated 3D model that responds to real-time frequency data from a song. Users can customize colors via a control panel and interact with the 3D scene using orbit controls. The app leverages the Web Audio API for audio analysis, post-processing effects like bloom and LUT for enhanced visuals, and HDR lighting.

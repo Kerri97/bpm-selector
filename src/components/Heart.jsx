@@ -7,11 +7,14 @@ import React, { useRef } from 'react'
 import { useFrame } from "@react-three/fiber"
 import { MeshTransmissionMaterial, useGLTF } from '@react-three/drei'
 
-export default function Model({ waveform, ...props }) {
+// Our 3D Model Component
+export default function Model({...props }) {
   const { nodes, materials } = useGLTF('/Heart.gltf')
   const ref = useRef();
 
   useFrame((state) => {
+
+    // Check the github link above for a video that expands on this process
     const t = state.clock.getElapsedTime()
     ref.current.rotation.z = -0.2 - (1 + Math.sin(t / 1.5)) / 20
     ref.current.rotation.x = Math.cos(t / 4) / 16
@@ -20,14 +23,15 @@ export default function Model({ waveform, ...props }) {
     ref.current.rotation.y = (1 + Math.sin(t / 1.5)) / 10
 
     // Scaling - adds a scale-up and scale-down effect
+    // In reference to our t (time) variable
     const scaleFactor = 1 + Math.sin(t * 2) * 0.2  // Scale oscillation, multiplying to create a noticeable effect
-    ref.current.scale.set(scaleFactor, scaleFactor, scaleFactor) // Apply scale in all axes
-
+    ref.current.scale.set(scaleFactor, scaleFactor, scaleFactor) // Apply scale on all axis
   })
 
   return (
     <group {...props} dispose={null}>
       <mesh ref={ref} geometry={nodes.Cube.geometry}>
+    
         <MeshTransmissionMaterial
           backside
           backsideThickness={1}
@@ -40,8 +44,6 @@ export default function Model({ waveform, ...props }) {
           clearcoat={1}
           clearcoatRoughness={0}
           envMapIntensity={0.5}
-          // Use the waveform colour parsed from App.jsx
-          color={waveform}
         />
       </mesh>
     </group>

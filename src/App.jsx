@@ -1,32 +1,33 @@
-import './App.css';
-import { Canvas, useLoader } from '@react-three/fiber';
-import Experience from './components/Experience';
+import './App.css'
+import { Canvas, useLoader } from '@react-three/fiber'
+import Experience from './components/Experience'
+
 import { AsciiRenderer, Environment, Lightformer } from '@react-three/drei'
 import { EffectComposer, Bloom, LUT, BrightnessContrast, HueSaturation, ToneMapping } from '@react-three/postprocessing'
 import { LUTCubeLoader, ToneMappingMode } from 'postprocessing'
-import { useControls } from 'leva';
-import Model from '/public/Heart'
+
+import { useControls } from 'leva'
+import Model from './components/Heart'
 
 function App() {
 
-  // Environment Texture
+  // LUT texture for colour grading
   const texture = useLoader(LUTCubeLoader, '/F-6800-STD.cube')
 
-  // Leva Control Panel
-  const { backgroundColor, heart, waveform, shadow } = useControls({
-    backgroundColor: '#151520',
-    heart: '#000000',
-    waveform: '#fff0f0',  // The color control for waveform
-    shadow: '#ffffff',
+  // Leva Control Panel. Other choices include dat gui, or you could make your own custom gui to fit a brand for example
+  const { background, waveform, text } = useControls({
+    background: '#1e386f',
+    waveform: '#ff6900',
+    text: '#ffffff',
   });
 
 
-  // What we return to be rendered within our 3D Canvas
+  // What we return to be rendered, here we define the main app 
   return (
     <div className="App">
 
-      {/* Fixed header */}
-      <h2 className="fixed-header">BPM Song <br /> Selector</h2>
+
+      <h2 className="fixed-header" style={{ color: text }}> BPM Song <br /> Selector</h2>
 
 
       <p className="fixed-para">
@@ -35,17 +36,19 @@ function App() {
         Heart Song: <span className="fixed-italic">Selecting...</span>
       </p>
 
+
+
       <Canvas>
 
-        // Background colour
-        <color attach="background" args={[backgroundColor]} />
+        {/* Background colour */}
+        <color attach="background" args={[background]} />
 
-        // Lighting
+        {/* Lighting */}
         <ambientLight intensity={0.5} />
         <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
         <pointLight position={[-10, -10, -10]} />
 
-        // Environment Texture
+        {/* Environment Texture */}
         <Environment files="https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/blue_photo_studio_1k.hdr" resolution={512}>
           <group rotation={[0, 0, 1]}>
             <Lightformer form="circle" intensity={10} position={[0, 10, -10]} scale={20} onUpdate={(self) => self.lookAt(0, 0, 0)} />
@@ -55,7 +58,7 @@ function App() {
           </group>
         </Environment>
 
-        // Post-processing Effects
+        {/* Post-processing Effects */}
         <EffectComposer disableNormalPass>
           <Bloom mipmapBlur luminanceThreshold={1} intensity={2} />
           <LUT lut={texture} />
@@ -64,15 +67,17 @@ function App() {
           <ToneMapping mode={ToneMappingMode.ACES_FILMIC} />
         </EffectComposer>
 
-        // Our Experience Component
-        <Experience />
-
-        // Renderer's (overlays) to play with, check out react-three/drei or storybook
-        <AsciiRenderer fgColor="orange" bgColor="blue" />
+        {/* Our Experience Component*/}
+        {/* We pass in waveform colour (defined by our Leva controls) as a prop */}
+        <Experience waveform={waveform} />
 
 
-        // Our Model (Heart)
-        <Model waveform={waveform} />
+        {/* Our 3D Model, that we converted into a jsx component */}
+        <Model />
+
+
+        {/* Ascii Renderer for stylized output */}
+        <AsciiRenderer fgColor="orange" bgColor={background} />
 
       </Canvas>
 

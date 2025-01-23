@@ -1,24 +1,23 @@
 @font-face {
   font-family: "Baste-Bold";
   src:
-    url("/public/assets/fonts/BasteBTRIAL-Black.otf") format("opentype"),
+    url("./assets/fonts/BasteBTRIAL-Black.otf") format("opentype"),
 
 }
 
 @font-face {
   font-family: "MintGrotesk-Bold";
   src:
-    url("/public/assets/fonts/MintGroteskTrial-Bold.otf") format("opentype"),
+    url("./assets/fonts/MintGroteskTrial-Bold.otf") format("opentype"),
 
 }
 
 @font-face {
   font-family: "MintGrotesk-Italic";
   src:
-    url("/public/assets/fonts/MintGroteskTrial-BoldItalic.otf") format("opentype"),
+    url("./assets/fonts/MintGroteskTrial-BoldItalic.otf") format("opentype"),
 
 }
-
 
 .App {
   width: 100vw;
@@ -31,7 +30,7 @@
 }
 
 .leva {
-  z-index: 9999; /* Make sure the controls are on top */
+  z-index: 9999; 
   position: absolute;
   top: 0;
   left: 0;
@@ -41,7 +40,7 @@
   position: fixed;
   top: 10px;
   left: 10px;
-  z-index: 9999; /* Ensure it stays on top of other elements */
+  z-index: 9999; 
   font-family: 'Baste-Bold';
   font-size: 6rem;
   line-height: 6rem;
@@ -54,7 +53,7 @@
   position: fixed;
   top: 200px;
   left: 10px;
-  z-index: 9999; /* Ensure it stays on top of other elements */
+  z-index: 9999; 
   font-family: 'MintGrotesk-Bold';
   font-size: 2rem;
   line-height: 2.5rem;
@@ -62,7 +61,6 @@
   margin: 0;
   padding: 24px;
 }
-
 
 .fixed-bold {
   font-family:'MintGrotesk-Bold';
